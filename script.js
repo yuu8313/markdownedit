@@ -36,13 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 blob = new Blob([content], {type: 'text/plain'});
                 filename = 'document.txt';
                 break;
+            case 'txt':
+                blob = new Blob([content], {type: 'text/svg'});
+                filename = 'document.txt';
+                break;
             case 'csv':
                 const csv = content.split('\n').map(line => line.split(',').join(',')).join('\n');
                 blob = new Blob([csv], {type: 'text/csv'});
                 filename = 'document.csv';
                 break;
-                const svgElement = document.querySelector('svg');
-                saveSVG(svgElement, 'my_image.svg');
             case 'pdf':
                 const element = document.createElement('div');
                 element.innerHTML = marked(content);
