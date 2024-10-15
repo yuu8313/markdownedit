@@ -41,18 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 blob = new Blob([csv], {type: 'text/csv'});
                 filename = 'document.csv';
                 break;
+                const svgElement = document.querySelector('svg');
+                saveSVG(svgElement, 'my_image.svg');
             case 'pdf':
                 const element = document.createElement('div');
                 element.innerHTML = marked(content);
                 html2pdf().from(element).save('document.pdf');
                 return;
         }
-        　　case 'svg':
-                const element = document.createElement('div');
-                element.innerHTML = marked(content);
-                html2pdf().from(element).save('project.svg');
-                return;
-        }
+
 
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
