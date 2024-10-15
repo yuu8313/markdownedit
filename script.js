@@ -32,10 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 blob = new Blob([marked(content)], {type: 'text/html'});
                 filename = 'document.html';
                 break;
-            case 'svg':
-                blob = new Blob([marked(content)], {type: 'text/svg'});
-                filename = 'document.html';
-                break;
             case 'txt':
                 blob = new Blob([content], {type: 'text/plain'});
                 filename = 'document.txt';
