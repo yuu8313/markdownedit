@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const previewPane = document.getElementById('preview-pane');
     const downloadBtn = document.getElementById('download-btn');
     const downloadFormat = document.getElementById('download-format');
-    const copyBtn = document.getElementById('copy-btn'); // 追加された要素
-    const clearBtn = document.getElementById('clear-btn'); // 追加された要素
+    const copyBtn = document.getElementById('copy-btn'); 
+    const clearBtn = document.getElementById('clear-btn'); 
 
     function updatePreview() {
         const markdown = markdownInput.value;
@@ -47,6 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 html2pdf().from(element).save('document.pdf');
                 return;
         }
+        　　case 'svg':
+                const element = document.createElement('div');
+                element.innerHTML = marked(content);
+                html2pdf().from(element).save('project.svg');
+                return;
+        }
 
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -58,14 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
         URL.revokeObjectURL(url);
     });
 
-    // 追加されたコピー機能
     copyBtn.addEventListener('click', () => {
         markdownInput.select();
         document.execCommand('copy');
         alert('テキストがクリップボードにコピーされました。');
     });
 
-    // 追加されたクリア機能
     clearBtn.addEventListener('click', () => {
         if (confirm('本当にテキストをクリアしますか？')) {
             markdownInput.value = '';
